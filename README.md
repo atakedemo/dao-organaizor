@@ -14,3 +14,6 @@ DAOの自動化ツール
 ├── doc                         : 設計書類(概念図、シーケンス図)
 └── frontend                    : フロントエンド *現在実装予定なし
 ```
+
+## 参考文献、参考URL
+* [AWS Key Management Service（AWS KMS）を使用して Ethereum EIP-1559トランザクションに署名する](https://aws.amazon.com/jp/blogs/news/use-key-management-service-to-sign-ethereum-eip1559-transaction/)
