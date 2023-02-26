@@ -1,6 +1,10 @@
 # dao-organaizor
 DAOの自動化ツール
 
+UNCHAINの進捗2Earnにて申請中
+（[申請中のフォーム](https://unchain-shiftbase.notion.site/DAO-Auganizor-d3771bf4331a4e448128d74e79172f43)）
+
+
 ## ディレクトリ構造
 ```
 ├── backend                     : クラウド(AWS)でのサーバー実装
