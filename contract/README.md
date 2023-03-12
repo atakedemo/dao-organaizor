@@ -1,13 +1,26 @@
-# Sample Hardhat Project
+# デモ用のスマートコントラクト
+***
+## 処理概要
+* 対象のウォレットに対してトークンを付与する
+* NFT(ERC1155)はあらかじめ発行(mint)しておき、所有権を相手に移す<br>※ガス代は運営側(本システム)にて負担する
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
+***
+## 環境設定のコマンド
+初期設定
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
+npm init -y
+npm install --save-dev hardhat
+npx hardhat
 ```
+
+必要ライブラリのインストール
+```shell
+npm install @openzeppelin/contracts
+npm install dotenv --save
+```
+
+デプロイ
+```shell
+npx hardhat run --network {ネットワーク(local/goerli/mumbai)} scripts/deploy.ts
+```
+
