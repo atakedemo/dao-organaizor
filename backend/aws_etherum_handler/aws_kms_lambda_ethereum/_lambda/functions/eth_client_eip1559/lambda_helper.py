@@ -189,11 +189,10 @@ def get_contract_params(eth_addr: str,
 
     return transaction
 
-
 def assemble_tx(tx_params: dict, 
                 params: EthKmsParams, 
                 eth_checksum_addr: str, 
-                chainid: int) -> (bytes, bytes):
+                chainid: int) -> (bytes):
     tx_unsigned = serializable_unsigned_transaction_from_dict(transaction_dict=tx_params)
     tx_hash = tx_unsigned.hash()
 
@@ -223,22 +222,27 @@ def assemble_tx(tx_params: dict,
     print('translate tx information!!!!!')
     return tx_hash, tx_hash
 
-def assemble_contract(tx_params: dict, 
+# ToDo: ERC1155の実行にする
+# トークンの移転
+def assemble_contract_transfer(tx_params: dict, 
                       params: EthKmsParams, 
                       contract_json: dict, 
-                      contract_addr: str, 
-                      contract_func: str,
+                      contract_addr: str,
                       contract_params: dict) -> (bytes):
     abi = contract_json['abi']
     contract_attr_checked = Web3.toChecksumAddress(contract_addr)
     contract_instance = w3.eth.contract(abi=abi, address=contract_attr_checked)
 
     # assemble function in constract
-    print(contract_params)
-    constract_func_checked = contract_instance.functions[contract_func](
-        contract_params["recipient"],
-        contract_params["tokenURI"],
-        contract_params["id"])
+    contract_params_data_hash = w3.toHex(contract_params["data"])
+
+    constract_func_checked = contract_instance.functions["safeTransferFrom"](
+        contract_params["from"],
+        contract_params["to"],
+        contract_params["id"],
+        contract_params["amount"],
+        contract_params_data_hash
+    )
     tx_unsigned = constract_func_checked.buildTransaction(tx_params)
 
     tx_singed = sign_transaction(tx_unsigned, params.get_kms_key_id())
