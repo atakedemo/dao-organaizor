@@ -25,7 +25,17 @@ UNCHAINの進捗2Earnにて申請中
 |Network|使用するチェーン|Polygon Mumbai|
 |Contract Address|デモコントラクト(ERC1155)|0xCCAd304E9B5a6B69168DD2E791F01021cf3295B9|
 |Contract Address|デモコントラクト(ERC20)|0xfff|
+|Wallet Adress|Tx実行サーバーのアドレス ※AWS KMSで管理|0x54d3B05E28cB78204e1171DeC088698eb829523d|
+
+### envファイル
+```
+API_URL_GOERLI = AlchemyのAPI URL("https://eth-goerli.g.alchemy.com/~")
+API_URL_MUMBAI = AlchemyのAPI URL("https://polygon-mumbai.g.alchemy.com/~")
+API_KEY_MUMBAI = Ploygonscanで発行したAPIキー
+PRIVATE_KEY = コントラクトをデプロイするアカウントの秘密鍵
+```
 
 ## 参考文献、参考URL
 * [ERC1155に準拠した独自コントラクトの作り方 - Zenn](https://zenn.dev/ryo_takahashi/articles/53d1f9abb2eecd)
+* [hardhatからEtherscanにコードを登録する方法 - Zenn](https://zenn.dev/ryo_takahashi/articles/77f4eeb3f9f52b)
 * [AWS Key Management Service（AWS KMS）を使用して Ethereum EIP-1559トランザクションに署名する](https://aws.amazon.com/jp/blogs/news/use-key-management-service-to-sign-ethereum-eip1559-transaction/)
