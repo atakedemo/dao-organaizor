@@ -1,11 +1,11 @@
 {
-	"image": "https://dao-org.4attraem.com/metadata/img/Bronze.png",
+	"image": "https://dao-org.4attraem.com/metadata/img/gold.png",
 	"chainId": "80001",
-	"name": "DAO Organaizor - Bronze Rank",
-	"description": "Bronze Rank",
+	"name": "DAO Organaizor - Gold Rank",
+	"description": "Gold Rank",
 	"attributes": [
 		{
-			"value": "Bronze",
+			"value": "Gold",
 			"trait_type": "Rarity"
 		}
 	],

@@ -21,6 +21,10 @@ npm install dotenv --save
 
 デプロイ
 ```shell
-npx hardhat run --network {ネットワーク(local/goerli/mumbai)} scripts/deploy.ts
+npx hardhat run --network NETWORK_NAME(local/goerli/mumbai) scripts/deploy.ts
 ```
 
+デプロイしたコントラクトの検証
+```shell
+npx hardhat verify --network (local/goerli/mumbai) デプロイしたコントラクトAddress
+```

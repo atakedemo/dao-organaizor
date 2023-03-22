@@ -134,7 +134,7 @@ def lambda_handler(event, context):
                                   max_priority_fee_per_gas=max_priority_fee_per_gas)
 
         # assemble Ethereum transaction and sign it offline
-        tx_hash = assemble_contract_transfer(tx_params=tx_params,
+        tx_result = assemble_contract_transfer(tx_params=tx_params,
                                     params=params,
                                     contract_json=contract_json,
                                     contract_addr=contract_addr,
@@ -142,7 +142,7 @@ def lambda_handler(event, context):
 
         return {
             'operation': 'nft1155',
-            "signed_tx_hash": tx_hash
+            "result": tx_result
         }
 
     # ToDO：BlockcertsによるVC発行

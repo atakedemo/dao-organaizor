@@ -1,15 +1,15 @@
 {
-	"image": "https://dao-org.4attraem.com/metadata/img/gold.png",
+	"image": "https://dao-org.4attraem.com/metadata/img/Silver.png",
 	"chainId": "80001",
-	"name": "DAO Organaizor - Gold Rank",
-	"description": "Gold Rank",
+	"name": "DAO Organaizor - Silver Rank",
+	"description": "Silver Rank",
 	"attributes": [
 		{
-			"value": "Gold",
+			"value": "Silver",
 			"trait_type": "Rarity"
 		}
 	],
 	"animation_url": "",
-	"nft_contract_address": "0x8995bd38c2012c04a4e7dd6f3ed61b29b1c43aa2",
+	"nft_contract_address": "0xCCAd304E9B5a6B69168DD2E791F01021cf3295B9",
 	"token_id": 1
 }

@@ -234,18 +234,17 @@ def assemble_contract_transfer(tx_params: dict,
     contract_instance = w3.eth.contract(abi=abi, address=contract_attr_checked)
 
     # assemble function in constract
-    contract_params_data_hash = w3.toHex(contract_params["data"])
 
     constract_func_checked = contract_instance.functions["safeTransferFrom"](
         contract_params["from"],
         contract_params["to"],
         contract_params["id"],
         contract_params["amount"],
-        contract_params_data_hash
+        b'\x00\x01\x02\x03'
     )
     tx_unsigned = constract_func_checked.buildTransaction(tx_params)
 
     tx_singed = sign_transaction(tx_unsigned, params.get_kms_key_id())
     tx_hash = w3.eth.sendRawTransaction(tx_singed.rawTransaction)
-
-    return tx_hash
+    
+    return 'end_transaction'
