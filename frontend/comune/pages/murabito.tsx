@@ -6,7 +6,7 @@ import { ConnectWallet, ChainId, useNetwork, useAddress } from "@thirdweb-dev/re
 import styles from "../styles/Home.module.css";
 import { join } from "node:path/win32";
 
-const Home: NextPage = () => {
+const Murabito: NextPage = () => {
   const address = useAddress();
   const [network, switchNetwork] = useNetwork();
 
@@ -62,4 +62,4 @@ const Home: NextPage = () => {
   }
 };
 
-export default Home;
+export default Murabito;

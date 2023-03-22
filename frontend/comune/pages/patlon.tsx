@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-//import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
 import { ConnectWallet, ChainId, useNetwork, useAddress } from "@thirdweb-dev/react";
