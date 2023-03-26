@@ -25,12 +25,13 @@ UNCHAINの進捗2Earnにて申請中
 |Network|使用するチェーン|Polygon Mumbai|
 |Contract Address|デモコントラクト(ERC1155)|0xCCAd304E9B5a6B69168DD2E791F01021cf3295B9|
 |Contract Address|デモコントラクト(ERC20)|0xfff|
+|Contract Address|USDC(in Polygon Testnet)|0x0FA8781a83E46826621b3BC094Ea2A0212e71B23|
 |Wallet Adress|Tx実行サーバーのアドレス ※AWS KMSで管理|0x54d3B05E28cB78204e1171DeC088698eb829523d|
 
 ### envファイル
 ```
-API_URL_GOERLI = AlchemyのAPI URL("https://eth-goerli.g.alchemy.com/~")
-API_URL_MUMBAI = AlchemyのAPI URL("https://polygon-mumbai.g.alchemy.com/~")
+API_URL_GOERLI = AlchemyのAPI URL(ex. "https://eth-goerli.g.alchemy.com/~")
+API_URL_MUMBAI = AlchemyのAPI URL(ex. "https://polygon-mumbai.g.alchemy.com/~")
 API_KEY_MUMBAI = Ploygonscanで発行したAPIキー
 PRIVATE_KEY = コントラクトをデプロイするアカウントの秘密鍵
 ```
