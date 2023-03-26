@@ -4,7 +4,7 @@ import "../styles/globals.css";
 import HeadComponent from '../components/head';
 
 // アプリケーションが動作するチェーン（Goerli）を取得し、定義します。
-const activeChainId = ChainId.Goerli;
+const activeChainId = ChainId.Mumbai;
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

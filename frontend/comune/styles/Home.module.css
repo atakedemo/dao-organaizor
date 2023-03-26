@@ -39,6 +39,15 @@
   width: 230px;
 }
 
+.button_menu button{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 230px;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+}
+
 .description {
   margin-top: 3rem;
   margin-bottom: 2rem;

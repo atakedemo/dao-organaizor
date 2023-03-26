@@ -1,10 +1,11 @@
 import type { NextPage } from "next";
-//import { useState, useEffect } from "react";
+import Router from 'next/router';
 
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
 import { ConnectWallet, ChainId, useNetwork, useAddress } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 import { join } from "node:path/win32";
+import RoundedButtonComponent from "../components/RoundButton"
 
 const Home: NextPage = () => {
   const address = useAddress();
@@ -12,7 +13,7 @@ const Home: NextPage = () => {
 
   const joinMurabito = async () => {
     try {
-      console.log("Join 村人")
+      Router.push("murabito");
     } catch (error) {
       console.log(error)
     }
@@ -20,18 +21,18 @@ const Home: NextPage = () => {
 
   const joinPatlon = async () => {
     try {
-      console.log("Join パトロン")
+      Router.push("stake");
     } catch (error) {
       console.log(error)
     }
   };
 
-  if (address && network && network?.data?.chain?.id !== ChainId.Goerli) {
+  if (address && network && network?.data?.chain?.id !== ChainId.Mumbai) {
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>Goerli に切り替えてください⚠️</h1>
-          <p>この dApp は Goerli テストネットのみで動作します。</p>
+          <h1 className={styles.title}>Polygon Testnet(Mumbai)に切り替えてください⚠️</h1>
+          <p>この dApp は Polygon Testnet(Mumbai)のみで動作します。</p>
           <p>ウォレットから接続中のネットワークを切り替えてください。</p>
         </main>
       </div>
@@ -41,20 +42,20 @@ const Home: NextPage = () => {
       <div className={styles.container}>
         <main className={styles.main}>
           <h1 className={styles.title}>
-            Welcome to Comune
+            ようこそ Comune市
           </h1>
           <div className={styles.connect}>
             <ConnectWallet />
           </div>
           <div className={styles.connect}>
-            <button disabled={!address} onClick={joinMurabito}>
-              {!address ? "Prease Connect Wallet" : "Join as Murabito"}
-            </button>
+            <RoundedButtonComponent onClick={joinMurabito}>
+              {!address ? "Prease Connect Wallet" : "Join as 村人(Murabito)"}
+            </RoundedButtonComponent>
           </div>
           <div className={styles.connect}>
-            <button disabled={!address} onClick={joinPatlon}>
-              {!address ? "Prease Connect Wallet" : "Stake as Patlon"}
-            </button>
+            <RoundedButtonComponent onClick={joinPatlon}>
+              {!address ? "Prease Connect Wallet" : "Join as Patlon"}
+            </RoundedButtonComponent>
           </div>
         </main>
       </div>
