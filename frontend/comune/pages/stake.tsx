@@ -1,17 +1,17 @@
 import type { NextPage } from "next";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ConnectWallet, ChainId, useNetwork, useAddress, useSigner } from "@thirdweb-dev/react";
 import { Grid, Box, Typography, Button } from '@material-ui/core';
 import styles from "../styles/Home.module.css";
 import { useProjectListStyles } from '../styles/list';
-import { join } from "node:path/win32";
+import axios from 'axios';
 
 import ComuneStakeFormPopup from '../components/ComuneStakePopup'
 import PjStakeFormPopup from '../components/PjStakePopup'
 
-type Project = {
+interface Project {
   id: String;
-  name: String;
+  pj_name: String;
   category: String;
   description: String;
   image: String;
@@ -24,44 +24,34 @@ const Stake: NextPage = () => {
   const [network, switchNetwork] = useNetwork();
   const [open, setOpen] = useState(false);
   const [filterText, setFilterText] = useState('');
-  const [projects, setProjects] = useState([
+  const [projects, setProjects] = useState<Project[]>([
     {
-      id: "001",
-      name: "Project A",
-      category: "イベント",
-      description: "イベントを行うプロジェクトです",
-      image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-      contract: "0x54d3B05E28cB78204e1171DeC088698eb829523d"
-    },
-    {
-      id: "002",
-      name: "Project B",
-      category: "設備",
-      description: "設備保全を行うプロジェクトです",
-      image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-      contract: "0x54d3B05E28cB78204e1171DeC088698eb829523d"
+      "id": "000",
+      "pj_name":"None",
+      "category":"None",
+      "description":"Null",
+      "image":"https://example.com",
+      "contract": "0x000000000000000000000"
     }
-  ])
+  ]);
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const response = await axios.get<Project[]>('https://1vlevj4eak.execute-api.ap-northeast-1.amazonaws.com/demo/projects');
+        setProjects(JSON.parse(response.data.body).Items);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const stakeComune = async () => {
-    try{
+    fetchTodos();
+  }, []);
 
-    } catch (error) {
-
-    }
-  };
-
-  const handleBuyButtonClick = () => {
-    setOpen(true);
-  };
-
-  const handleBuyDialogClose = () => {
-    setOpen(false);
-  };
-
+  /*
   const filteredProducts = projects.filter(
     (project) => project.name.toLowerCase().includes(filterText.toLowerCase()) || project.description.toLowerCase().includes(filterText.toLowerCase())
   );
+  */
 
   if (address && network && network?.data?.chain?.id !== ChainId.Mumbai) {
     console.log(network?.data?.chain?.id)
@@ -94,11 +84,11 @@ const Stake: NextPage = () => {
           <h2>プロジェクトへ投資する</h2>
           <div className={stylesList.root}>
             <Grid container spacing={2}>
-              {filteredProducts.map((project) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={project.id}>
+              {projects.map((project) => (
+                <Grid item xs={12} sm={6} md={4} lg={3}>
                   <Box className={stylesList.project}>
-                    <img src={project.image} alt={project.name} className={stylesList.projectImage} />
-                    <Typography variant="h6">{project.name}</Typography>
+                    <img src={project.image} className={stylesList.projectImage} />
+                    <Typography variant="h6">{project.pj_name}</Typography>
                     <Typography variant="body1">{project.description}</Typography>
                     <Box display="flex" justifyContent="space-between" alignItems="center">
                       <PjStakeFormPopup 

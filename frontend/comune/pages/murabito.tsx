@@ -1,11 +1,8 @@
 import type { NextPage } from "next";
 import Router from 'next/router';
 
-import { Button, Divider } from '@material-ui/core';
 import { ConnectWallet, ChainId, useNetwork, useAddress, useSigner } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
-import { join } from "node:path/win32";
-
 import NftFormPopup from '../components/NftPopup';
 import RoundedButtonComponent from "../components//RoundButton";
 
@@ -14,11 +11,11 @@ const Murabito: NextPage = () => {
   const [network, switchNetwork] = useNetwork();
   const signer = useSigner();
 
-  const stakeToken = async () => {
+  const routeStekeToken = async () => {
     Router.push("stake");
   };
 
-  const pjCreate = async () => {
+  const routePjCreate = async () => {
     Router.push("projectCreate");
   }
 
@@ -49,13 +46,13 @@ const Murabito: NextPage = () => {
             />
           </div>
           <div className={styles.button_menu}>
-            <RoundedButtonComponent onClick={pjCreate}>
+            <RoundedButtonComponent onClick={routePjCreate}>
               {!address ? "Prease Connect Wallet" : "プロジェクトを提案する"}
             </RoundedButtonComponent>
           </div>
           <div className={styles.button_menu}>
             <h2>パトロンとして参加する</h2>
-            <RoundedButtonComponent onClick={stakeToken}>
+            <RoundedButtonComponent onClick={routeStekeToken}>
               {!address ? "Prease Connect Wallet" : "プロジェクトか村に寄付する"}
             </RoundedButtonComponent>
           </div>

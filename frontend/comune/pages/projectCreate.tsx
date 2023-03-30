@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
-import React, { useState, useEffect } from "react";
+import Router from 'next/router';
+import React, { useState } from "react";
 import axios from 'axios';
 import { Button,TextField,Grid,Paper,Typography } from '@material-ui/core';
 
@@ -7,6 +8,7 @@ import { ConnectWallet, ChainId, useNetwork, useAddress } from "@thirdweb-dev/re
 import styles from "../styles/Home.module.css";
 import { useFormStyles } from '../styles/form';
 import FileUpload from '../components/FileUpload'
+import RoundedButtonComponent from "../components//RoundButton";
 
 interface FormValues {
   name: string;
@@ -31,6 +33,10 @@ const ProjectCreate: NextPage = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const routeMurabito = async () => {
+    Router.push("murabito");
+  };
+
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -47,8 +53,14 @@ const ProjectCreate: NextPage = () => {
     setSubmitting(true);
 
     try {
-      await axios.post('/api/submitForm', formValues);
-      setSubmitted(true);
+      const response = await axios.post(
+        'https://1vlevj4eak.execute-api.ap-northeast-1.amazonaws.com/demo/projects', 
+        formValues
+      );
+      if (response.status === 200) {
+        
+        setSubmitted(true);
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -72,6 +84,9 @@ const ProjectCreate: NextPage = () => {
         <Paper className={classes.paper}>
           <Typography variant="h5">PJが登録されました</Typography>
         </Paper>
+        <RoundedButtonComponent onClick={routeMurabito}>
+          Go To Project List
+        </RoundedButtonComponent>
       </div>
     );
   } else {
@@ -80,7 +95,7 @@ const ProjectCreate: NextPage = () => {
         <Paper className={classes.paper}>
           <Typography variant="h5">PJ登録フォーム</Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
-          <FileUpload></FileUpload>
+            <FileUpload></FileUpload>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -98,6 +113,9 @@ const ProjectCreate: NextPage = () => {
                   id="description"
                   name="description"
                   label="Description"
+                  multiline
+                  maxRows={4}
+                  variant="standard"
                   value={formValues.description}
                   onChange={handleInputChange}
                 />

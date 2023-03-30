@@ -6,10 +6,11 @@ export const useFormStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
     },
         paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
+            padding: theme.spacing(2),
+            margin: '50px',
+            textAlign: 'center',
+            color: theme.palette.text.secondary,
+        },
     form: {
         display: 'flex',
         flexDirection: 'column',
@@ -22,6 +23,6 @@ export const useFormStyles = makeStyles((theme) => ({
     },
     button: {
         marginTop: theme.spacing(1),
-        width: '100%',
+        width: '50%',
     },
 }));
