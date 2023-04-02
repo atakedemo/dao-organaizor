@@ -7,7 +7,7 @@ import { ethers } from 'ethers';
 
 type Project = {
   id: String;
-  name: String;
+  pj_name: String;
   category: String;
   description: String;
   image: String;
