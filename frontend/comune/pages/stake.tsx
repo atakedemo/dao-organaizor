@@ -87,7 +87,7 @@ const Stake: NextPage = () => {
           <div className={stylesList.root}>
             <Grid container spacing={2}>
               {projects.map((project) => (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid xs={12} sm={6} md={4} lg={3}>
                   <Box className={stylesList.project}>
                     <img key={project.pj_id} src={project.image} className={stylesList.projectImage} />
                     <Typography key={project.pj_id} variant="h6">{project.pj_name}</Typography>
