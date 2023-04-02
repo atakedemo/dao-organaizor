@@ -34,9 +34,6 @@ def lambda_handler(event, context):
     event_body = event['body-json']
 
     # Set Params from send request
-    #tgt_addr = event.get('tgt_addr')
-    #message = event.get('message')
-    #signature = event.get('signature')
     tgt_addr = event_body['tgt_addr']
     message = event_body['message']
     signature = event_body['signature']

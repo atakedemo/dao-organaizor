@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Router from 'next/router';
 
-import { ConnectWallet, ChainId, useNetwork, useAddress, useSigner } from "@thirdweb-dev/react";
+import { ConnectWallet, ChainId, useNetwork, useAddress } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 import NftFormPopup from '../components/NftPopup';
 import RoundedButtonComponent from "../components//RoundButton";
@@ -9,7 +9,6 @@ import RoundedButtonComponent from "../components//RoundButton";
 const Murabito: NextPage = () => {
   const address = useAddress();
   const [network, switchNetwork] = useNetwork();
-  const signer = useSigner();
 
   const routeStekeToken = async () => {
     Router.push("stake");

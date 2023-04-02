@@ -95,12 +95,6 @@ def lambda_handler(event, context):
 
     # ToDo：スマートコントラクトの実行
     elif operation == 'nft1155':
-        if not (event.get('max_fee_per_gas', -1) >= 0):
-            return {
-                'operation': 'nft1155',
-                'error': 'missing parameter - NFT1155 requires max_fee_per_gas to be specified'
-            }
-        
         s3 = boto3.client('s3')
         
         # Set Params from environment varaible
