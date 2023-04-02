@@ -6,7 +6,7 @@ import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 import { ethers } from 'ethers';
 
 type Project = {
-  id: String;
+  pj_id: String;
   pj_name: String;
   category: String;
   description: String;

@@ -10,7 +10,7 @@ import ComuneStakeFormPopup from '../components/ComuneStakePopup'
 import PjStakeFormPopup from '../components/PjStakePopup'
 
 interface Project {
-  id: String;
+  pj_id: String;
   pj_name: String;
   category: String;
   description: String;
@@ -27,7 +27,7 @@ const Stake: NextPage = () => {
   const [filterText, setFilterText] = useState('');
   const [projects, setProjects] = useState<Project[]>([
     {
-      "id": "000",
+      "pj_id": "000",
       "pj_name":"None",
       "category":"None",
       "description":"Null",
@@ -54,7 +54,6 @@ const Stake: NextPage = () => {
     (project) => project.name.toLowerCase().includes(filterText.toLowerCase()) || project.description.toLowerCase().includes(filterText.toLowerCase())
   );
   */
-  //一覧にロールを入れる
 
   if (address && network && network?.data?.chain?.id !== ChainId.Mumbai) {
     console.log(network?.data?.chain?.id)
@@ -90,12 +89,12 @@ const Stake: NextPage = () => {
               {projects.map((project) => (
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                   <Box className={stylesList.project}>
-                    <img src={project.image} className={stylesList.projectImage} />
-                    <Typography variant="h6">{project.pj_name}</Typography>
-                    <Typography variant="h6">{project.status}</Typography>
-                    <Typography variant="body1">{project.description}</Typography>
+                    <img key={project.pj_id} src={project.image} className={stylesList.projectImage} />
+                    <Typography key={project.pj_id} variant="h6">{project.pj_name}</Typography>
+                    <Typography key={project.pj_id} variant="h6">{project.status}</Typography>
+                    <Typography key={project.pj_id} variant="body1">{project.description}</Typography>
                     <Box display="flex" justifyContent="space-between" alignItems="center">
-                      <PjStakeFormPopup 
+                      <PjStakeFormPopup
                           buttonText={!address ? "Prease Connect Wallet" : "投資(Mathic)"} project={project}
                       />
                     </Box>
