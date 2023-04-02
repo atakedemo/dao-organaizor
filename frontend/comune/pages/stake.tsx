@@ -16,6 +16,7 @@ interface Project {
   description: String;
   image: String;
   contract: String;
+  status: String;
 }
 
 const Stake: NextPage = () => {
@@ -31,7 +32,8 @@ const Stake: NextPage = () => {
       "category":"None",
       "description":"Null",
       "image":"https://example.com",
-      "contract": "0x000000000000000000000"
+      "contract": "0x000000000000000000000",
+      "status": "seed"
     }
   ]);
   useEffect(() => {
@@ -52,6 +54,7 @@ const Stake: NextPage = () => {
     (project) => project.name.toLowerCase().includes(filterText.toLowerCase()) || project.description.toLowerCase().includes(filterText.toLowerCase())
   );
   */
+  //一覧にロールを入れる
 
   if (address && network && network?.data?.chain?.id !== ChainId.Mumbai) {
     console.log(network?.data?.chain?.id)
@@ -89,6 +92,7 @@ const Stake: NextPage = () => {
                   <Box className={stylesList.project}>
                     <img src={project.image} className={stylesList.projectImage} />
                     <Typography variant="h6">{project.pj_name}</Typography>
+                    <Typography variant="h6">{project.status}</Typography>
                     <Typography variant="body1">{project.description}</Typography>
                     <Box display="flex" justifyContent="space-between" alignItems="center">
                       <PjStakeFormPopup 
