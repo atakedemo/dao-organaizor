@@ -16,7 +16,6 @@ interface Project {
   description: String;
   image: String;
   contract: String;
-  status: String;
 }
 
 const Stake: NextPage = () => {
@@ -32,8 +31,7 @@ const Stake: NextPage = () => {
       "category":"None",
       "description":"Null",
       "image":"https://example.com",
-      "contract": "0x000000000000000000000",
-      "status": "seed"
+      "contract": "0x000000000000000000000"
     }
   ]);
   useEffect(() => {
@@ -48,12 +46,6 @@ const Stake: NextPage = () => {
 
     fetchTodos();
   }, []);
-
-  /*
-  const filteredProducts = projects.filter(
-    (project) => project.name.toLowerCase().includes(filterText.toLowerCase()) || project.description.toLowerCase().includes(filterText.toLowerCase())
-  );
-  */
 
   if (address && network && network?.data?.chain?.id !== ChainId.Mumbai) {
     console.log(network?.data?.chain?.id)
@@ -87,12 +79,11 @@ const Stake: NextPage = () => {
           <div className={stylesList.root}>
             <Grid container spacing={2}>
               {projects.map((project) => (
-                <Grid xs={12} sm={6} md={4} lg={3}>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
                   <Box className={stylesList.project}>
-                    <img key={project.pj_id} src={project.image} className={stylesList.projectImage} />
-                    <Typography key={project.pj_id} variant="h6">{project.pj_name}</Typography>
-                    <Typography key={project.pj_id} variant="h6">{project.status}</Typography>
-                    <Typography key={project.pj_id} variant="body1">{project.description}</Typography>
+                    <Typography variant="h6">{project.pj_name}</Typography>
+                    <img src={project.image} className={stylesList.projectImage} />
+                    <Typography variant="body1">{project.description}</Typography>
                     <Box display="flex" justifyContent="space-between" alignItems="center">
                       <PjStakeFormPopup
                           buttonText={!address ? "Prease Connect Wallet" : "投資(Mathic)"} project={project}
