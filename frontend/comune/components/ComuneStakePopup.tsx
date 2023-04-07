@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, DialogContentText } from '@material-ui/core';
 import { useState } from 'react';
 import RoundedButtonComponent from "./RoundButton";
-import { useBalance } from "@thirdweb-dev/react";
+import { useBalance, useSigner } from "@thirdweb-dev/react";
 import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 import { ethers } from 'ethers';
 
@@ -17,7 +17,6 @@ export default function ComuneStakeFormPopup({ buttonText}: ComuneStakeFormProps
   const stakePj = async () => {
     try {
       //対象のPJに対して寄付させる
-      //ToDo: デモ以降では、寄付受付のコントラクトを実行する
       const provider = new ethers.providers.Web3Provider(window.ethereum);
 
       // ネイティブトークンの送信先アドレスと量
@@ -32,8 +31,10 @@ export default function ComuneStakeFormPopup({ buttonText}: ComuneStakeFormProps
 
       // トランザクションを署名して送信
       const txReceipt = await provider.getSigner().sendTransaction(tx);
-      console.log(`Transaction hash: ${txReceipt.hash}`);
-      setOpen(false);
+      //const signer = useSigner();
+      //const txReceipt = await signer?.sendTransaction(tx);
+      console.log(`Transaction hash: ${txReceipt}`);
+      handleCloseDialog;
     } catch (error) {
       console.log(error)
     }

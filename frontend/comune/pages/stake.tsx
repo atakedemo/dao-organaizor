@@ -79,8 +79,8 @@ const Stake: NextPage = () => {
           
           <div className={stylesList.root}>
             <Grid container spacing={2}>
-              {/*projects.map((project) => (
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+              {projects.map((project) => (
+                <Grid item key={project.pj_id} xs={12} sm={6} md={4} lg={3}>
                   <Box className={stylesList.project}>
                     <Typography variant="h6">{project.pj_name}</Typography>
                     <img src={project.image} className={stylesList.projectImage} />
@@ -92,7 +92,7 @@ const Stake: NextPage = () => {
                     </Box>
                   </Box>
                 </Grid>
-              ))*/}
+              ))}
             </Grid>
           </div>
         </main>
