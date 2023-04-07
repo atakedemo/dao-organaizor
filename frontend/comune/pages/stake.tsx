@@ -76,9 +76,10 @@ const Stake: NextPage = () => {
             />
           </div>
           <h2>プロジェクトへ投資する</h2>
+          
           <div className={stylesList.root}>
             <Grid container spacing={2}>
-              {projects.map((project) => (
+              {/*projects.map((project) => (
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                   <Box className={stylesList.project}>
                     <Typography variant="h6">{project.pj_name}</Typography>
@@ -91,7 +92,7 @@ const Stake: NextPage = () => {
                     </Box>
                   </Box>
                 </Grid>
-              ))}
+              ))*/}
             </Grid>
           </div>
         </main>
