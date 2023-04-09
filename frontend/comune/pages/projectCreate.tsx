@@ -2,12 +2,11 @@ import type { NextPage } from "next";
 import Router from 'next/router';
 import React, { useState } from "react";
 import axios from 'axios';
-import { Button,TextField,Grid,Paper,Typography } from '@material-ui/core';
+import { Button,TextField,Container,Grid,Paper,Typography } from '@material-ui/core';
 
-import { ConnectWallet, ChainId, useNetwork, useAddress } from "@thirdweb-dev/react";
+import { ChainId, useNetwork, useAddress } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 import { useFormStyles } from '../styles/form';
-import FileUpload from '../components/FileUpload'
 import RoundedButtonComponent from "../components//RoundButton";
 
 interface FormValues {
@@ -25,15 +24,50 @@ const ProjectCreate: NextPage = () => {
     name: '',
     category: '',
     description: '',
-    image: '',
+    image: 'https://dao-org.4attraem.com/assets/no_image.jpeg',
     contract: ''
   });
 
   const classes = useFormStyles();
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [photo, setPhoto] = useState<File | null>(null);
 
-  const routeMurabito = async () => {
+  const onImgUpload = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!photo) {
+      console.error("写真を選択してください");
+      return;
+    }
+
+    // ファイルをBase64にエンコード
+    const reader = new FileReader();
+    reader.readAsDataURL(photo);
+    reader.onloadend = async () => {
+      const base64data = reader.result;
+
+      // APIリクエストの送信
+      try {
+        const response = await axios.post(
+          'https://1vlevj4eak.execute-api.ap-northeast-1.amazonaws.com/demo/projects/image', 
+          {
+            'image_data': JSON.stringify({ photo: base64data })
+          }
+        );
+        console.log(response.data);
+        console.log(response.data.body);
+        setFormValues((prevValues) => ({
+          ...prevValues,
+          ['image']: response.data.body,
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  };
+
+  const routeTop = async () => {
     Router.push("murabito");
   };
 
@@ -47,7 +81,6 @@ const ProjectCreate: NextPage = () => {
     }));
   };
 
-  //Todo: APIに対してPostする
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitting(true);
@@ -58,7 +91,6 @@ const ProjectCreate: NextPage = () => {
         formValues
       );
       if (response.status === 200) {
-        
         setSubmitted(true);
       }
     } catch (error) {
@@ -84,8 +116,8 @@ const ProjectCreate: NextPage = () => {
         <Paper className={classes.paper}>
           <Typography variant="h5">PJが登録されました</Typography>
         </Paper>
-        <RoundedButtonComponent onClick={routeMurabito}>
-          Go To Project List
+        <RoundedButtonComponent onClick={routeTop}>
+          Go To TOP Page
         </RoundedButtonComponent>
       </div>
     );
@@ -93,11 +125,13 @@ const ProjectCreate: NextPage = () => {
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          <Typography variant="h5">PJ登録フォーム</Typography>
-          <form className={classes.form} onSubmit={handleSubmit}>
-            <FileUpload></FileUpload>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant="h4">PJ登録フォーム</Typography>
+            </Grid>
+            
+            <Grid item xs={6}>
+              <form className={classes.form} onSubmit={handleSubmit}>
                 <TextField
                   required
                   id="name"
@@ -106,8 +140,6 @@ const ProjectCreate: NextPage = () => {
                   value={formValues.name}
                   onChange={handleInputChange}
                 />
-              </Grid>
-              <Grid item xs={12}>
                 <TextField
                   required
                   id="description"
@@ -119,8 +151,17 @@ const ProjectCreate: NextPage = () => {
                   value={formValues.description}
                   onChange={handleInputChange}
                 />
-              </Grid>
-              <Grid item xs={12}>
+                <TextField
+                  required
+                  id="contract"
+                  name="contract"
+                  label="Wallet Address"
+                  multiline
+                  maxRows={4}
+                  variant="standard"
+                  value={formValues.contract}
+                  onChange={handleInputChange}
+                />
                 <Button
                   variant="contained"
                   color="primary"
@@ -130,10 +171,28 @@ const ProjectCreate: NextPage = () => {
                 >
                   {submitting ? 'Submitting...' : 'Submit'}
                 </Button>
-              </Grid>
+              </form>
             </Grid>
-          </form>
-          
+            <Grid item xs={6}>
+              <form className={classes.form} onSubmit={onImgUpload}>
+                <img src={formValues.image} className={classes.projectImage} />
+                <input
+                  id="photo-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setPhoto(e.target.files?.[0] || null)}
+                />
+                <Button 
+                  type="submit" 
+                  variant="contained" 
+                  color="primary"
+                  className={classes.button}
+                >
+                  写真をアップロード
+                </Button>
+              </form>
+            </Grid>
+          </Grid>
         </Paper>
         
       </div>

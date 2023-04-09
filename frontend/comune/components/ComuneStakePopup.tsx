@@ -31,8 +31,6 @@ export default function ComuneStakeFormPopup({ buttonText}: ComuneStakeFormProps
 
       // トランザクションを署名して送信
       const txReceipt = await provider.getSigner().sendTransaction(tx);
-      //const signer = useSigner();
-      //const txReceipt = await signer?.sendTransaction(tx);
       console.log(`Transaction hash: ${txReceipt}`);
       handleCloseDialog;
     } catch (error) {

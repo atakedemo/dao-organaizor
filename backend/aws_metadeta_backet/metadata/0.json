@@ -1,15 +1,12 @@
 {
-	"image": "https://dao-org.4attraem.com/metadata/img/gold.png",
-	"chainId": "80001",
-	"name": "DAO Organaizor - Gold Rank",
-	"description": "Gold Rank",
 	"attributes": [
 		{
 			"value": "Gold",
 			"trait_type": "Rarity"
 		}
 	],
-	"animation_url": "",
-	"nft_contract_address": "0xCCAd304E9B5a6B69168DD2E791F01021cf3295B9",
-	"token_id": 1
+	"image": "https://dao-org.4attraem.com/metadata/img/gold.png",
+	"chainId": "80001",
+	"name": "Comune - Admin Rank",
+	"description": "Gold Rank",
 }

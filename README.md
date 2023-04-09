@@ -1,9 +1,10 @@
-# dao-organaizor
+# Comune
 DAOの自動化ツール
 
-UNCHAINの進捗2Earnにて申請中
+* UNCHAINの進捗2Earnにて申請中
 （[申請中のフォーム](https://unchain-shiftbase.notion.site/DAO-Auganizor-d3771bf4331a4e448128d74e79172f43)）
-
+* サービス概要
+（[Comune - プレゼン資料](https://www.canva.com/design/DAFdLlP6d9A/A-JwJnjKGRXSv36wfBHFMg/view?utm_content=DAFdLlP6d9A&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)）
 
 ## ディレクトリ構造
 ```

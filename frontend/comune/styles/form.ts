@@ -25,4 +25,7 @@ export const useFormStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
         width: '50%',
     },
+    projectImage : {
+        width: '50%',
+    }
 }));

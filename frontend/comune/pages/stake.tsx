@@ -24,6 +24,8 @@ const Stake: NextPage = () => {
   const [network, switchNetwork] = useNetwork();
   const [open, setOpen] = useState(false);
   const [filterText, setFilterText] = useState('');
+
+  //ToDo: ロールを加える
   const [projects, setProjects] = useState<Project[]>([
     {
       "pj_id": "000",
